@@ -506,8 +506,15 @@
                     <p class="text-on-surface-variant font-medium leading-relaxed mb-6">
                         By summing individual probabilities from the PMF chart across meaningful ranges, we quantify exactly <strong>how often</strong> each operational state occurs — translating abstract math into concrete staffing decisions.
                     </p>
-                    <div class="bg-surface-container-high border border-outline-variant/30 p-5 rounded-xl font-mono text-sm shadow-inner text-center">
-                        $$P(a \le X \le b) = \sum_{k=a}^{b} P(X = k)$$
+                    <div class="bg-surface-container-high border border-outline-variant/30 p-5 rounded-xl font-mono text-sm shadow-inner text-center leading-loose">
+                        <span class="text-primary font-bold">P(</span>a ≤ X ≤ b<span class="text-primary font-bold">)</span>
+                        &nbsp;=&nbsp;
+                        <span class="inline-flex flex-col items-center align-middle mx-1 text-xs leading-tight">
+                            <span class="text-secondary font-bold">b</span>
+                            <span class="text-secondary text-lg">Σ</span>
+                            <span class="text-secondary font-bold">k=a</span>
+                        </span>
+                        &nbsp;<span class="text-primary font-bold">P(</span>X = k<span class="text-primary font-bold">)</span>
                     </div>
                 </div>
                 

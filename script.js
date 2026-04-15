@@ -440,4 +440,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
+    // ============================================
+    //  PRE-RENDER ALL CHARTS BEFORE PRINTING
+    //  Ensures charts are never blank in the PDF
+    // ============================================
+    window.addEventListener('beforeprint', () => {
+        renderDataChart();
+        renderPMFChart();
+        renderCDFChart();
+        animateStatValues();
+        // Force MathJax to typeset everything before print
+        if (window.MathJax && window.MathJax.typeset) {
+            try { MathJax.typeset(); } catch (e) { console.error('MathJax print error', e); }
+        }
+    });
+
 });
