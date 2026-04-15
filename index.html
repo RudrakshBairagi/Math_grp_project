@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing the Unexpected</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1 -->
+        <section class="slide active">
+            <div class="glass-panel text-center center-content">
+                <div class="badge">Probability & Statistics</div>
+                <h1 class="title">Managing the Unexpected</h1>
+                <h2 class="subtitle">Wait Times & Patient Surges in the Emergency Room</h2>
+                <div class="footer-note">Group Assignment Presentation</div>
+                <div class="nav-hint">Press <span>→</span> to begin</div>
+            </div>
+        </section>
+
+        <!-- Slide 2 -->
+        <section class="slide">
+            <div class="glass-panel">
+                <div class="slide-header">01 / Problem Understanding</div>
+                <h2>The Real-World Situation</h2>
+                <p class="highlight-text">A hospital emergency room experiences varying patient arrivals throughout the day. During peak hours, the influx can fluctuate unpredictably.</p>
+                
+                <div class="info-box">
+                    <h3>The Administration Needs to Know:</h3>
+                    <ul>
+                        <li>How often do extreme influxes occur?</li>
+                        <li>How should the hospital prepare staffing levels to handle these surges without overstaffing during normal times?</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3 -->
+        <section class="slide">
+            <div class="glass-panel">
+                <div class="slide-header">02 / The Main Uncertainty</div>
+                <h2>What exactly is random or varying?</h2>
+                
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>The Event</h3>
+                        <p>The exact number of patients walking through the Emergency Room doors in any given <strong>1-hour window</strong>.</p>
+                    </div>
+                    <div class="card highlight-card">
+                        <h3>The Random Variable (X)</h3>
+                        <p>The total count of patients arriving per hour during peak times.</p>
+                    </div>
+                </div>
+
+                <div class="info-box mt-2">
+                    <h3>Why it matters:</h3>
+                    <p>If arrivals are too high, patients face critical delays and doctors are overwhelmed. If too low, hospital resources are underutilized.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4 -->
+        <section class="slide">
+            <div class="glass-panel">
+                <div class="slide-header">03 / Data Used (Simulated)</div>
+                <h2>30-Day Simulated Influx Data</h2>
+                <p>Generated simulated data representing standard "peak hour" shifts. <br/><strong>Sample Mean:</strong> ~14.1 patients/hour. <br/><strong>Theoretical Baseline:</strong> λ = 15 patients/hour.</p>
+                
+                <div class="chart-container">
+                    <canvas id="erDataChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5 -->
+        <section class="slide">
+            <div class="glass-panel">
+                <div class="slide-header">04 / Mathematical Model</div>
+                <h2>The Poisson Distribution</h2>
+                
+                <div class="grid-2">
+                    <div>
+                        <h3>Why we chose this model:</h3>
+                        <ol class="custom-list">
+                            <li>Predicts probability of a given number of events (arrivals) in a fixed interval (1 hour).</li>
+                            <li>Patients arrive independently of one another.</li>
+                            <li>The average rate (λ = 15) is constant and known.</li>
+                        </ol>
+                    </div>
+                    <div class="formula-box center-content">
+                        <div class="math-title">Formula Used</div>
+                        <div class="math-eq">P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!}</div>
+                        <p class="math-sub">X = Target number of arrivals<br>λ = Average arrival rate (15)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6 -->
+        <section class="slide">
+            <div class="glass-panel">
+                <div class="slide-header">05 / Calculations & Results</div>
+                <h2>Probability of Scenarios</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-title">Typical Scenario</div>
+                        <div class="stat-desc">Handling 10 to 20 patients</div>
+                        <div class="stat-math">P(10 ≤ X ≤ 20)</div>
+                        <div class="stat-value">84.72%</div>
+                    </div>
+                    
+                    <div class="stat-card warning">
+                        <div class="stat-title">"Surge" Scenario</div>
+                        <div class="stat-desc">More than 20 patients</div>
+                        <div class="stat-math">P(X > 20)</div>
+                        <div class="stat-value">8.30%</div>
+                        <div class="stat-footnote">1 in 12 peak hours</div>
+                    </div>
+
+                    <div class="stat-card danger">
+                        <div class="stat-title">"Crisis" Scenario</div>
+                        <div class="stat-desc">25 or more patients</div>
+                        <div class="stat-math">P(X ≥ 25)</div>
+                        <div class="stat-value">1.12%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7 -->
+        <section class="slide">
+            <div class="glass-panel">
+                <div class="slide-header">06 / Interpretation</div>
+                <h2>What Do These Numbers Mean?</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon success">✓</div>
+                        <div class="timeline-content">
+                            <h3>Routine Staffing is Highly Effective</h3>
+                            <p>~85% of the time, patient load stays in the comfortable range. Current baseline models work perfectly here.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon alert">!</div>
+                        <div class="timeline-content">
+                            <h3>Surges are Rare but Statistically Certain</h3>
+                            <p>A true crisis (25+ patients) happens ~1.12% of the time. This means it will predictably occur about once every 90 peak hours.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item mt-2 warning-box">
+                        <p><strong>Conclusion:</strong> Treating an extreme scenario as an unexpected anomaly is dangerous; statistically, it is guaranteed to happen and must be planned for.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8 -->
+        <section class="slide">
+            <div class="glass-panel">
+                <div class="slide-header">07 / Final Recommendation</div>
+                <h2>Strategic Action Plan</h2>
+                
+                <div class="grid-2">
+                    <div class="action-card">
+                        <div class="action-num">1</div>
+                        <h3>Optimize the Baseline</h3>
+                        <p>Staff the ER to comfortably handle up to <strong>20 continuous arrivals an hour</strong>. Our calculations prove this effortlessly covers <strong>>91%</strong> of all scenarios.</p>
+                    </div>
+                    
+                    <div class="action-card pulse">
+                        <div class="action-num">2</div>
+                        <h3>Dynamic "Surge" Protocol</h3>
+                        <p>Implement an <strong>"On-Call" surge rotation</strong>. When the ER registers an early leading indicator (like 10 arrivals in 20 minutes), immediately activate backup personnel.</p>
+                    </div>
+                </div>
+
+                <div class="final-quote">
+                    "By using Probability & Statistics, the hospital safely balances the daily budget while ensuring mathematically-backed emergency readiness."
+                </div>
+            </div>
+        </section>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button id="prevBtn" class="control-btn" disabled>←</button>
+            <div class="progress-bar-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+            <button id="nextBtn" class="control-btn">→</button>
+        </div>
+    </div>
+
+    <!-- MathJax for formula rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
