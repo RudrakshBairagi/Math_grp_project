@@ -57,3 +57,63 @@ mjx-container {
 mjx-container[jax="CHTML"][display="true"] {
     margin: 0 !important;
 }
+
+/* ============================================
+   PRINT / PDF STYLES
+   Triggered by Download PDF button (window.print())
+   Each slide prints as one full A4/Letter page.
+============================================ */
+@media print {
+    /* Reset body for print */
+    body {
+        overflow: visible !important;
+        height: auto !important;
+        background: #fff9ec !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Hide footer nav on print */
+    footer {
+        display: none !important;
+    }
+
+    /* Show ALL slides stacked, one per page */
+    main {
+        position: static !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+        height: auto !important;
+    }
+
+    .slide {
+        position: relative !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        pointer-events: auto !important;
+        width: 100% !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        page-break-after: always;
+        break-after: page;
+        padding: 48px 64px !important;
+        display: flex !important;
+        flex-direction: column;
+        overflow: hidden !important;
+        box-sizing: border-box;
+    }
+
+    /* Don't break elements mid-page */
+    canvas {
+        max-height: 40vh;
+        max-width: 100%;
+    }
+
+    /* Avoid cutting content */
+    h1, h2, h3, h4, p, canvas {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+}

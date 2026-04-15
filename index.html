@@ -707,11 +707,11 @@
 
     <!-- Footer -->
     <footer class="fixed bottom-0 w-full bg-surface-container-lowest/80 backdrop-blur border-t border-outline-variant/20 flex justify-between items-center px-6 md:px-12 py-4 z-50">
-        <div class="flex items-center gap-6">
-            <p class="text-primary font-headline text-xs uppercase tracking-widest font-bold">
-                © The Statistical Academy
-            </p>
-            <div class="hidden md:block w-px h-4 bg-outline-variant/40"></div>
+        <div class="flex items-center gap-4">
+            <button id="downloadBtn" onclick="window.print()" class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg text-xs font-bold uppercase tracking-widest font-headline hover:bg-primary/90 transition-colors cursor-pointer shadow-sm">
+                <span class="material-symbols-outlined text-sm">download</span>
+                Download PDF
+            </button>
             <p class="hidden md:block text-outline font-headline text-xs tracking-widest font-bold">
                 Hospital Data Analysis
             </p>
